@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=nest_template
+      - POSTGRES_USER=nest_template
+      - POSTGRES_PASSWORD=nest_template
