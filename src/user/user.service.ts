@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { UserRepository } from './repository/user.repository';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import UserProvider from '../auth/interface/user.provider.interface';
 
 @Injectable()
-export class UserService {
+export class UserService implements UserProvider {
   private readonly _repository;
 
   constructor(repository: UserRepository) {

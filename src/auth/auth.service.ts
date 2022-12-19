@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { UserService } from '../user/user.service';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
+import UserProvider from './interface/user.provider.interface';
 
 @Injectable()
 export class AuthService {
   private readonly _userService;
   private readonly _configService;
 
-  constructor(configService: ConfigService, userService: UserService) {
+  constructor(
+    configService: ConfigService,
+    @Inject('UserProvider') userService: UserProvider,
+  ) {
     this._userService = userService;
     this._configService = configService;
   }
