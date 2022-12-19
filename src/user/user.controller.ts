@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -14,6 +15,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Auth } from '../auth/decorator/auth.decorator';
 import { User } from './entity/user.entity';
 import { MeGuard } from '../auth/guard/me.guard';
+import LoggerInterceptor from '../logger/interceptor/logger.interceptor';
 
 @Controller('users')
 export class UserController {
@@ -46,6 +48,7 @@ export class UserController {
 
   @Patch(':id')
   @UseGuards(MeGuard)
+  @UseInterceptors(LoggerInterceptor)
   async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     await this._userService.update(id, dto);
     return this._userService.getOne(id);
@@ -53,6 +56,7 @@ export class UserController {
 
   @Delete(':id')
   @UseGuards(MeGuard)
+  @UseInterceptors(LoggerInterceptor)
   async delete(@Param('id') id: string) {
     const user = await this._userService.getOne(id);
     await this._userService.delete(id);

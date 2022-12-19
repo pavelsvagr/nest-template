@@ -31,14 +31,14 @@ export class LoggerService implements LoggerService {
   /**
    * Write a 'debug' level log.
    */
-  debug?(message: any, ...optionalParams: any[]) {
+  debug(message: any, ...optionalParams: any[]) {
     this._logger.debug(optionalParams, message);
   }
 
   /**
    * Write a 'verbose' level log.
    */
-  verbose?(message: any, ...optionalParams: any[]) {
+  verbose(message: any, ...optionalParams: any[]) {
     this._logger.info(optionalParams, message);
   }
 }
